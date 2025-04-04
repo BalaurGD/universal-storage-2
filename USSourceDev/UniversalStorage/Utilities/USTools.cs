@@ -460,7 +460,7 @@ namespace UniversalStorage2
         }
 
         // Code from https://github.com/Swamp-Ig/KSPAPIExtensions/blob/master/Source/Utils/KSPUtils.cs#L62
-        private static FieldInfo windowListField;
+        //private static FieldInfo windowListField;
 
 		/// <summary>
 		/// Find the UIPartActionWindow for a part. Usually this is useful just to mark it as dirty.

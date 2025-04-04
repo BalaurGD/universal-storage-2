@@ -16,24 +16,32 @@ namespace UniversalStorage2
 
         [KSPField(guiActive = false, guiActiveEditor = false, guiName = "#autoLOC_US_SolarPanelCostField")]
         public float AddedCostValue = 0f;
+
         [KSPField(isPersistant = false)]
         public string chargeRate;
+
         [KSPField(isPersistant = false)]
         public string secondaryTransformName;
+
         [KSPField(isPersistant = false)]
         public string solarMeshTransformName;
+
         [KSPField(isPersistant = false)]
         public string resourceName;
+
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "#autoLOC_234370")]
         public string SolarPanels;
+
         [KSPField(guiUnits = " ", guiFormat = "P0", guiActive = true, guiActiveEditor = false, guiName = "#autoLOC_6001420")]
         public float SunExposure;
+
         [KSPField(guiUnits = " ", guiFormat = "F3", guiActive = true, guiActiveEditor = false, guiName = "#autoLOC_6001421")]
         public float EnergyFlow;
 
 
         [KSPField(guiUnits = " ", guiFormat = "F0", guiActive = false, guiActiveEditor = false, guiName = "Solar Cell Cost")]
         public float SolarCellCost = 0;
+
         [KSPField(guiUnits = " ", guiFormat = "F3", guiActive = false, guiActiveEditor = false, guiName = "Solar Cell Mass")]
         public float SolarCellMass = 0;
 
@@ -49,6 +57,7 @@ namespace UniversalStorage2
 
         [KSPField]
         public bool DebugMode = false;
+
         [KSPField]
         public bool SolarPanelsLocked = false;
 
@@ -63,9 +72,13 @@ namespace UniversalStorage2
 
         private BaseEvent _tglEvent;
 
+        [KSPField]
         private BaseField _solarPanelCostField;
+        [KSPField]
         private BaseField _sunExposureField;
+        [KSPField]
         private BaseField _energyFlowField;
+        [KSPField]
         private BaseField _solarPanelField;
 
         private bool _panelsAvailable;
@@ -108,7 +121,7 @@ namespace UniversalStorage2
             IsDeployed = isOn;
 
             if (HighLogic.LoadedSceneIsFlight)
-                SolarPanels = (IsDeployed || IsFixed)? "" : _localizedRetractedString;
+                SolarPanels = (IsDeployed || IsFixed) ? "" : _localizedRetractedString;
         }
 
         public override void OnStart(StartState state)
@@ -173,11 +186,13 @@ namespace UniversalStorage2
             if (HighLogic.LoadedSceneIsEditor)
                 SolarPanels = IsActive ? _localizedActiveString : _localizedInactiveString;
             else
-                SolarPanels = (IsDeployed || IsFixed)? "" : _localizedRetractedString;
+                SolarPanels = (IsDeployed || IsFixed) ? "" : _localizedRetractedString;
 
             onFuelRequestCost = GameEvents.FindEvent<EventData<int, Part, USFuelSwitch>>("onFuelRequestCost");
             onFuelRequestMass = GameEvents.FindEvent<EventData<int, Part, USFuelSwitch>>("onFuelRequestMass");
             usFuelSwitch = this.part.FindModuleImplementing<USFuelSwitch>();
+
+            SetSolarPanelStatus();
 
         }
 
@@ -230,7 +245,10 @@ namespace UniversalStorage2
                 return;
 
             IsActive = !IsActive;
-
+            SetSolarPanelStatus();
+        }
+        void SetSolarPanelStatus()
+        { 
             Fields["SolarCellCost"].guiActiveEditor = IsActive;
             Fields["SolarCellMass"].guiActiveEditor = IsActive;
 
@@ -282,20 +300,29 @@ namespace UniversalStorage2
         private void FixedUpdate()
         {
             if (SolarPanelsLocked)
+            {
                 return;
+            }
 
             if (!_panelsAvailable)
+            {
                 return;
+            }
 
             if (!_started)
+            {
                 return;
+            }
 
             if (!IsActive)
+            {
                 return;
+            }
 
             if (!IsDeployed && !IsFixed)
+            {
                 return;
-
+            }
             if (!HighLogic.LoadedSceneIsFlight)
                 return;
 
@@ -492,6 +519,7 @@ namespace UniversalStorage2
             }
             else
             {
+
                 _sunExposureField.guiActive = false;
                 _energyFlowField.guiActive = false;
                 _solarPanelField.guiActive = false;
@@ -588,3 +616,4 @@ namespace UniversalStorage2
         }
     }
 }
+

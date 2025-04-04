@@ -127,5 +127,24 @@
 		Add zh-cn Localization
 	Fixed the Elektron ratio of H2:O, was reversed
 
+4.0.2
+	Thanks to forum user @Swartz55 for this:
+		Fixed missing storage data in the US_Balancing_Patch.cfg
+	Wrote USEngineSwitch, needed for the Advanced Micro Sat
+	Fixed the USAdvancedMicroSatWedge:
+		Fixed transforms to point thrust in correct direction
+		Converted ModuleEngines to ModuleEnginesFX, needed for effects
+		Added ModuleEnginesFX for monoprop and xenon engines
+		Fixed various configs for each switch type
+		Added USEngineSwitch to control the engines
+	Updated all localization files with new fields (Google translate used)
+	Increased EC storage of Basic Micro Sat from 10 to 15ec
+	Increased range of antenna on Basic Micro Sat from 50000 to 500000
+	Increased range of antenna on Advanced Micro Sat from 50000 to 500000
+	Due to a problem with the USAdvancedScience module and the MPL-2, the number of experiments in the GooBayWedge, MapCamWedge and MatBayWedge have been reduced to 1 when a MPL-LG-2 Mobile Processing Lab is on the vessel
+
+	Known bug:
+		USAdvancedMicroSat has a Magnetometer; the animation is a bit broken, and can't be fixed
+
 TODO
 	Update all language files for missing fields

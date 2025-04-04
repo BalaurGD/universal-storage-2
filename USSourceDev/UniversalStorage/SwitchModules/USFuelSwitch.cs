@@ -109,12 +109,13 @@ namespace UniversalStorage2
 
 			onFuelRequestMass.Fire(_SwitchIndices[0], part, this);
 			onFuelRequestCost.Fire(_SwitchIndices[0], part, this);
+
 		}
 
-		public override void OnAwake()
+        public override void OnAwake()
 		{
 			if (configLoaded)
-				initializeData();
+				initializeData();			
 		}
 
 		private void OnDestroy()
@@ -206,6 +207,7 @@ namespace UniversalStorage2
 		[KSPEvent(guiActive = true, guiActiveEditor = true, guiName = "#autoLOC_US_NextTankModeSetup")]
 		public void nextModeEvent()
 		{
+			debug.Log("US2: nextModeEvent");
 			selectedTankModeTwo++;
 
 			if (selectedTankModeTwo >= tankList.Count)
@@ -217,7 +219,8 @@ namespace UniversalStorage2
 		[KSPEvent(guiActive = true, guiActiveEditor = true, guiName = "#autoLOC_US_PrevTankModeSetup")]
 		public void previousModeEvent()
 		{
-			selectedTankModeTwo--;
+            debug.Log("US2: previousModeEvent");
+            selectedTankModeTwo--;
 
 			if (selectedTankModeTwo < 0)
 				selectedTankModeTwo = tankList.Count - 1;
@@ -228,7 +231,8 @@ namespace UniversalStorage2
 		[KSPEvent(guiActive = true, guiActiveEditor = true, guiName = "#autoLOC_US_NextTankSetup")]
 		public void nextTankSetupEvent()
 		{
-			selectedTankModeOne++;
+            debug.Log("US2: nextTankSetupEvent");
+            selectedTankModeOne++;
 
 			if (selectedTankModeOne >= tankList[selectedTankModeTwo].Count)
 				selectedTankModeOne = 0;
@@ -239,7 +243,8 @@ namespace UniversalStorage2
 		[KSPEvent(guiActive = true, guiActiveEditor = true, guiName = "#autoLOC_US_PrevTankSetup")]
 		public void previousTankSetupEvent()
 		{
-			selectedTankModeOne--;
+            debug.Log("US2: previousTankSetupEvent");
+            selectedTankModeOne--;
 
 			if (selectedTankModeOne < 0)
 				selectedTankModeOne = tankList[selectedTankModeTwo].Count - 1;
@@ -252,7 +257,7 @@ namespace UniversalStorage2
 			if (p != part)
 				return;
 
-			for (int i = _SwitchIndices.Length - 1; i >= 0; i--)
+            for (int i = _SwitchIndices.Length - 1; i >= 0; i--)
 			{
 				if (_SwitchIndices[i] == index)
 				{
@@ -329,9 +334,9 @@ namespace UniversalStorage2
 		private void setupTankInPart(Part currentPart, bool calledByPlayer)
 		{
 			currentPart.Resources.dict = new DictionaryValueList<int, PartResource>();
-			PartResource[] partResources = currentPart.GetComponents<PartResource>();
+			//PartResource[] partResources = currentPart.GetComponents<PartResource>();
 
-			for (int i = 0; i < tankList.Count; i++)
+            for (int i = 0; i < tankList.Count; i++)
 			{
 				if (DebugMode)
 					debug.debugMessage(string.Format("Tank Mode: {0} - Selection: {1}", i, selectedTankModeTwo));

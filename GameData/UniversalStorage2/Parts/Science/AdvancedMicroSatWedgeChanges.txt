@@ -1,0 +1,58 @@
+XYZ Euler
+Location X,Y = 0,0 for all
+
+LFOEngine
+	X	-90
+	Y	0
+	Z	0
+
+monoThrustTransform
+	X	-90
+	Y	0
+	Z	0
+
+xenonThrustTransform
+	X	-90
+	Y	0
+	Z	0
+==============
+Changes
+For all: Set rotation mode to XYZ Euler
+LFOEngine
+1.  Set Location X,Y to 0,0
+2.  Set Rotation X to 0
+3.  Set Rotation Y to 180
+FXExhaustFlame
+Don't change location
+	X to -90
+	Y to 0
+	Z to 0
+FXExhaustFlame.001
+Don't change location
+	X to -90
+	Y to 180
+	Z to 0	
+
+monoThrustTransform
+1.  Set Location X,Y to 0,0
+2.  Set Rotation X to -90
+3.  Set Rotation Y to 0
+In the MonoEngines, rename exhaust flame transform by adding "mono" and renumber 
+monoFXExhaustFlame
+Don't change location
+	X to -90
+	Y, Z to 0,0
+monoFXExhaustFlame.001-003
+don't change any other settings
+
+xenonThrustTransform
+1.  Set Location X,Y to 0,0
+2.  Set Rotation X to -90
+3.  Set Rotation Y to 0
+
+For XenonEngines rename  FXExhaustFlame by adding "xenon" and renumber
+1.  Set Location X,Y to 0,0
+
+
+sunCatcher
+Change X to 180

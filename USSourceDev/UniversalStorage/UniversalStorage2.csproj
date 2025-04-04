@@ -57,6 +57,7 @@
     <Compile Include="StockVariants\USVariantController.cs" />
     <Compile Include="SwitchModules\USBaseSwitch.cs" />
     <Compile Include="SwitchModules\USCargoSwitch.cs" />
+    <Compile Include="SwitchModules\USEngineSwitch.cs" />
     <Compile Include="SwitchModules\USModuleSwitch.cs" />
     <Compile Include="StockVariants\UI_USVariantSelector.cs" />
     <Compile Include="SwitchModules\USRadiatorSwitch.cs" />

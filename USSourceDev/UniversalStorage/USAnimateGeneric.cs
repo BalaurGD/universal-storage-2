@@ -166,7 +166,7 @@ namespace UniversalStorage2
         private BaseField secondaryLimit;
 
         private bool _primaryDeployReached;
-        private bool _secondaryDeployReached;
+        //private bool _secondaryDeployReached;
 
         private Animation[] _animsPrimary;
 		private Animation[] _animsSecondary;

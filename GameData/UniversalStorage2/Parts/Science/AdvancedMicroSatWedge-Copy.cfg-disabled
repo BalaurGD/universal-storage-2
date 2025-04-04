@@ -35,7 +35,7 @@ PART
 			fuelCrossFeed = false
 			bulkheadProfiles = wedge
 			crashTolerance = 8
-			//CoMOffset = -0.088, 0.06, 0.0
+			CoMOffset = -0.088, 0.06, 0.0
 		  //CoLOffset = 0.0, 4.9, -0.3
 		  //CoPOffset = 0.0, 5.6, -0.3
 
@@ -51,150 +51,6 @@ PART
 	// Contains any special functionality for this part
 	/+
 	
-		EFFECTS
-		{
-			liquidFuelRunning
-			{
-				AUDIO
-				{
-					channel = Ship
-					clip = sound_rocket_mini
-					volume = 0.0 0.0
-					volume = 1.0 0.3
-					pitch = 0.0 0.75
-					pitch = 1.0 1.5
-					loop = true
-				}
-				MODEL_MULTI_PARTICLE
-				{
-					modelName = Squad/FX/Monoprop_small
-					transformName = FXExhaustFlame
-					emission = 0.0 0.0
-					emission = 0.4 0.8
-					emission = 1.0 1.0
-					speed = 0.0 0.8
-					speed = 1.0 1.0
-					//localOffset = 0, 0, 1
-					localPosition = 0, 0, 0.08
-				}
-			}
-			engage
-			{
-				AUDIO
-				{
-					channel = Ship
-					clip = sound_vent_soft
-					volume = 1.0
-					pitch = 2.0
-					loop = false
-				}
-			}
-			flameout
-			{
-				PREFAB_PARTICLE
-				{
-					prefabName = fx_exhaustSparks_flameout_2
-					transformName = thrustTransform
-					oneShot = true
-				}
-				AUDIO
-				{
-					channel = Ship
-					clip = sound_explosion_low
-					volume = 1.0
-					pitch = 2.0
-					loop = false
-				}
-			}			
-		}
-
-		EFFECTS
-		{
-			monopropFuelRunning
-			{
-				AUDIO
-				{
-					channel = Ship
-					clip = sound_rocket_mini
-					volume = 0.0 0.0
-					volume = 1.0 0.3
-					pitch = 0.0 0.75
-					pitch = 1.0 1.5
-					loop = true
-				}
-				MODEL_MULTI_PARTICLE
-				{
-					modelName = Squad/FX/Monoprop_small
-					transformName = monoFXExhaustFlame
-					emission = 0.0 0.0
-					emission = 0.4 0.8
-					emission = 1.0 1.0
-					speed = 0.0 0.8
-					speed = 1.0 1.0
-					//localOffset = 0, 0, 1
-					localPosition = 0, 0, 0.08
-				}
-			}
-			engage
-			{
-				AUDIO
-				{
-					channel = Ship
-					clip = sound_vent_soft
-					volume = 1.0
-					pitch = 2.0
-					loop = false
-				}
-			}
-			flameout
-			{
-				PREFAB_PARTICLE
-				{
-					prefabName = fx_exhaustSparks_flameout_2
-					transformName = thrustTransform
-					oneShot = true
-				}
-				AUDIO
-				{
-					channel = Ship
-					clip = sound_explosion_low
-					volume = 1.0
-					pitch = 2.0
-					loop = false
-				}
-			}			
-		}
-
-		EFFECTS
-		{		
-			IonPlume
-			{
-				AUDIO
-				{
-					channel = Ship
-					clip = sound_IonEngine
-					volume = 0.0 0.0
-					volume = 0.05 0.20
-					volume = 1.0 0.25
-					pitch = 0.0 0.2
-					pitch = 1.0 0.8
-					loop = true
-				}
-				MODEL_MULTI_PARTICLE
-				{
-					modelName = Squad/FX/IonPlume
-					transformName = xenonFXExhaustFlame
-					emission = 0.0 0.0
-					emission = 0.25 0.5			
-					emission = 1.0 1.0
-					//speed = 0.0 0.0
-					//speed = 1.0 1.0
-					localPosition = 0, 0, 0.12
-				}
-			}
-		}
-
-
 		MODULE
 		{
 			name = ModuleDeployableAntenna
@@ -384,7 +240,7 @@ PART
 		packetSize = 2
 		packetResourceCost = 12.0
 		requiredResource = ElectricCharge
-		antennaPower = 500000
+		antennaPower = 5000
 		optimumRange = 2500
 		packetFloor = .1
 		packetCeiling = 5
@@ -406,23 +262,21 @@ PART
 	MODULE
 	{
 		name = USSolarSwitch
-		SwitchID = 0;1;2
+		SwitchID = 0
 		isTracking = false
 		secondaryTransformName = sunCatcher
 		solarMeshTransformName = Solar
 	
 		isBreakable = false
 		resourceName = ElectricCharge
-		chargeRate = 1.0;1.0;1.35
-		AddedCost = 140;140;214
-		AddedPanelMass = 0.005;0.005;0.014285714
+		chargeRate = 1.35
+		AddedCost = 0
+		AddedPanelMass = 0
 		IsActive = true
 		IsFixed = true
 		toggleSolarPanelEventGUIName = Toggle Solar Panels
 
-		//DebugMode = true
 	}
-
 	MODULE
 	{
 		name = ModuleReactionWheel
@@ -524,7 +378,7 @@ PART
 	}
 
 	node_stack_bottom1 = -0.083, -0.24, 0.0, 0.0, -1.0, 0.0, 0, 1
-	//CoMOffset = -0.083, 0.0, 0.0
+	CoMOffset = -0.083, 0.0, 0.0
 
 	//RESOURCE
 	//{
@@ -536,21 +390,18 @@ PART
 	// Universal Storage Part Switch Config
 	// Used to set resources, cost and mass or different versions of the part
 	
-		///////////  LiquidFuel engine
 			MODULE
 			{
-				name = ModuleEnginesFX
-				engineID = LiquidFuel
-				thrustVectorTransformName = thrustTransform
+				name = ModuleEngines
+				thrustVectorTransformName = thrustTransform^
 				exhaustDamage = True
 				ignitionThreshold = 0.1
 				minThrust = 0
-				maxThrust = 2 // 20
-				heatProduction = 25 // 83
+				maxThrust = 20
+				heatProduction = 83
 				fxOffset = 0, 0, 0.4
 				EngineType = LiquidFuel
 				exhaustDamageDistanceOffset = 1.75
-				runningEffectName = liquidFuelRunning
 				PROPELLANT
 				{
 					name = LiquidFuel
@@ -610,80 +461,15 @@ PART
 				dependOnThrottle = True
 			}
 	
-			/////// Monoprop engine
-			MODULE
-			{
-				name = ModuleEnginesFX
-				engineID = MonoPropellant
-				thrustVectorTransformName = monoThrustTransform
-				exhaustDamage = False
-				ignitionThreshold = 0.1
-				minThrust = 0
-				maxThrust = 2
-				heatProduction = 30
-				fxOffset = 0, 0, 1.02
-				EngineType = MonoProp
-				exhaustDamageDistanceOffset = 0.25
-				runningEffectName = monopropFuelRunning
-				PROPELLANT
-				{
-					name = MonoPropellant
-					ratio = 0.9
-					DrawGauge = True
-				}
-				atmosphereCurve
-				{
-					key = 0 250
-					key = 1 120
-					key = 4 0.001
-				}
-			}
-			
-			////////// Xenon engine
-			MODULE
-			{
-				name = ModuleEnginesFX
-				engineID = Ion
-				thrustVectorTransformName = xenonThrustTransform
-				exhaustDamage = False
-				ignitionThreshold = 0.1
-				minThrust = 0
-				maxThrust = 0.2
-				heatProduction = 0
-			
-				powerEffectName = IonPlume
-				EngineType = Electric
-				PROPELLANT
-				{
-					name = ElectricCharge
-					ratio = 1.8
-					DrawGauge = True
-					minResToLeave = 1.0
-				}
-				PROPELLANT
-				{
-					name = XenonGas
-					ratio = 0.1
-					DrawGauge = True
-				}
-				atmosphereCurve
-				{
-					key = 0 4200
-					key = 1 100
-					key = 1.2 0.001
-				}
-			}
-
-
 			MODULE
 			{
 				name = USSwitchControl
 				SwitchID = 0
-				ButtonName = #autoLOC_US_Engine //Engine
-				ModuleDisplayName = #autoLOC_US_Engine //Engine
-				CurrentVariantTitle = #autoLOC_US_Engine
+				ButtonName = #autoLOC_US_Height //Height
+				ModuleDisplayName = #autoLOC_US_Height //Height
+				CurrentVariantTitle = #autoLOC_US_Height
 				ShowPreviousButton = False
-				ObjectNames = #autoLOC_US_LFO;#autoLOC_US_Mono;#autoLOC_US_Xenon
+				ObjectNames = #autoLOC_US_SingleHeight;#autoLOC_US_DoubleHeight;#autoLOC_US_TripleHeight
 				FuelSwitchModeOne = True
 				VariantColors = #68984d,#999999;#537a3d,#999999;#3a562a,#999999;#2e4321,#999999
 			}
@@ -708,7 +494,7 @@ PART
 			{
 				name = USFuelSwitch
 				SwitchID = 0
-				resourceNames = LiquidFuel,Oxidizer;MonoPropellant;XenonGas
+				resourceNames = LiquidFuel,Oxidizer;Monopropellant;Xenon
 				resourceAmounts = 10,12;50;50
 				initialResourceAmounts = 10,12;50;50
 				tankCost = 0;35;70
@@ -716,23 +502,9 @@ PART
 				hasGUI = False
 				availableInEditor = False
 				displayCurrentTankCost = True
-				ShowInfo =  False
-
-				DebugMode = true
+				ShowInfo = False
 			} 
 			
-			MODULE
-			{
-				name = USEngineSwitch
-				SwitchID = 0
-				hasGUI = False
-				availableInEditor = False
-				displayCurrentTankCost = True
-				ShowInfo =  False
-
-				DebugMode = true
-
-			}
 
 	MODULE
 	{

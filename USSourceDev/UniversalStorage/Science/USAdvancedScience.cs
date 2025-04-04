@@ -239,6 +239,23 @@ namespace UniversalStorage2
                 if (_greebleTransform != null)
                     _greebleTransform.gameObject.SetActive(false);
             }
+
+            if (HighLogic.LoadedSceneIsFlight)
+            {
+                foreach (var p in FlightGlobals.ActiveVessel.Parts)
+                {
+                    foreach (var m in p.Modules)
+                    {
+                        if (m.name == "ModuleScienceLab")
+                        {
+                            experimentsLimit = 1;
+                            return;
+                            
+                        }
+                    }
+                }
+            }
+
         }
 
         public override void OnUpdate()
