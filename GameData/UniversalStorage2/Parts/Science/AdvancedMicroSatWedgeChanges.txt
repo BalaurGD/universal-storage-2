@@ -30,7 +30,7 @@ Don't change location
 FXExhaustFlame.001
 Don't change location
 	X to -90
-	Y to 180
+	Y to 0
 	Z to 0	
 
 monoThrustTransform

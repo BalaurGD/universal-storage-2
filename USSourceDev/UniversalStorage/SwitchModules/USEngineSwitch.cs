@@ -10,8 +10,6 @@ namespace UniversalStorage2.SwitchModules
         [KSPField]
         public string SwitchID = string.Empty;
         [KSPField]
-        public bool displayCurrentEngineCost = true;
-        [KSPField]
         public bool availableInFlight = false;
         [KSPField]
         public bool availableInEditor = false;
@@ -145,10 +143,6 @@ namespace UniversalStorage2.SwitchModules
 
                 if (HighLogic.LoadedSceneIsFlight)
                     hasLaunched = true;
-
-
-                if (HighLogic.CurrentGame == null || HighLogic.CurrentGame.Mode == Game.Modes.CAREER)
-                    Fields["addedCost"].guiActiveEditor = displayCurrentEngineCost;
 
                 initialized = true;
             }

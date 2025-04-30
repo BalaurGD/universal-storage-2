@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using KSP.Localization;
 
 namespace UniversalStorage2
 {
@@ -48,26 +47,29 @@ namespace UniversalStorage2
         public override void OnStart(StartState state)
         {
             base.OnStart(state);
-            UpdateActions();
-            animations[0] = SetUpAnimation(deployAnimationName, part);
-            animations[1] = SetUpAnimation(doorAnimationName, part);
-            animations[2] = SetUpAnimation(paperfeedAnimationName, part);
-
-            Events["StartEventGUIName"].guiName = startEventGUIName;
-            Events["EndEventGUIName"].guiName = endEventGUIName;
-            Events["StartEventGUIName"].unfocusedRange = interactionRange;
-            Events["EndEventGUIName"].unfocusedRange = interactionRange;
-
+            if (HighLogic.LoadedSceneIsEditor || HighLogic.LoadedSceneIsFlight)
+            {
+                UpdateActions();
+                animations[0] = SetUpAnimation(deployAnimationName, part);
+                animations[1] = SetUpAnimation(doorAnimationName, part);
+                animations[2] = SetUpAnimation(paperfeedAnimationName, part);
+                Events["StartEventGUIName"].guiName = startEventGUIName;
+                Events["EndEventGUIName"].guiName = endEventGUIName;
+                Events["StartEventGUIName"].unfocusedRange = interactionRange;
+                Events["EndEventGUIName"].unfocusedRange = interactionRange;
+            }
 
         }
 
         void UpdateActions()
         {
             Events["CollectAllEvent"].active = true;
-            Events["CollectAllEvent"].guiActive = Events["CollectAllEvent"].guiActiveUnfocused = IsDeployed;
+            Events["CollectAllEvent"].guiActive = 
+                Events["CollectAllEvent"].guiActiveUnfocused = !IsDeployed;
 
             Events["CollectDataExternalEvent"].active = true;
-            Events["CollectDataExternalEvent"].guiActive = Events["CollectDataExternalEvent"].guiActiveUnfocused = IsDeployed;
+            Events["CollectDataExternalEvent"].guiActive = 
+                Events["CollectDataExternalEvent"].guiActiveUnfocused = IsDeployed;
 
             Events["StartEventGUIName"].guiActiveUnfocused = !IsDeployed;
             Events["EndEventGUIName"].guiActiveUnfocused = IsDeployed;

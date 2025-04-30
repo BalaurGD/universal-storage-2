@@ -146,5 +146,11 @@
 	Known bug:
 		USAdvancedMicroSat has a Magnetometer; the animation is a bit broken, and can't be fixed
 
+4.0.2.1
+	Fixed LFO engine on the AdvancedMicroSat (thrust & plume vectors were wrong)
+	Fixed exception on boot in the USEngineSwitch (caused by leftover field when being written)
+	Fixed exception on boot in the USScienceContainer (caused by initializing fields which only are initialized during the game)
+	Fixed the USScienceContainer not being able to do a Collect All
+
 TODO
 	Update all language files for missing fields
